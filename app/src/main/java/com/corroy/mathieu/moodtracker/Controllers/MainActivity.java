@@ -7,11 +7,10 @@ import com.corroy.mathieu.moodtracker.R;
 public class MainActivity extends AppCompatActivity {
 
 
-
+    // Application launching
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 }
