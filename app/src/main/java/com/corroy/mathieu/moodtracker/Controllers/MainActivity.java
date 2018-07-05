@@ -65,6 +65,7 @@ public class MainActivity extends FragmentActivity {
             public void onClick(View v) {
 
                 Intent history = new Intent(MainActivity.this, History.class);
+                history.putExtra("input", m_Text);
                 MainActivity.this.startActivity(history);
 
             }
