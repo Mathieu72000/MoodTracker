@@ -1,9 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/History_Linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controllers.History">
+    android:orientation="vertical" >
 
-</android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/history_location1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.143"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/history_location2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.143"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/history_location3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.143"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/history_location4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.143"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/history_location5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.143"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/history_location6"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.143"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/history_location7"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.143"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+</LinearLayout>
