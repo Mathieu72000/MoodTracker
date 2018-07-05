@@ -2,11 +2,13 @@ package com.corroy.mathieu.moodtracker.Controllers;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
+
 import android.widget.ImageButton;
 import com.corroy.mathieu.moodtracker.Adapters.PageAdapter;
 import com.corroy.mathieu.moodtracker.R;
@@ -16,6 +18,7 @@ public class MainActivity extends FragmentActivity {
 
     private VerticalViewPager mVerticalViewPager;
     private ImageButton mCommentBtn;
+    private ImageButton mHistoryBtn;
     private String m_Text = "";
 
     // Application launching
@@ -26,6 +29,7 @@ public class MainActivity extends FragmentActivity {
 
         mVerticalViewPager = findViewById(R.id.activity_main_view_pager);
         mCommentBtn = findViewById(R.id.activity_comment_btn);
+        mHistoryBtn = findViewById(R.id.activity_history_btn);
 
 
         mCommentBtn.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +58,18 @@ public class MainActivity extends FragmentActivity {
                 builder.show();
             }
         });
+
+        mHistoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent history = new Intent(MainActivity.this, History.class);
+                MainActivity.this.startActivity(history);
+
+            }
+        });
     }
+    
     // Application is running
     @Override
     protected void onResume() {
