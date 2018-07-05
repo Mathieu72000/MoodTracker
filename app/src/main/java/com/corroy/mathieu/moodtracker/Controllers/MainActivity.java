@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
-
 import android.widget.ImageButton;
 import com.corroy.mathieu.moodtracker.Adapters.PageAdapter;
 import com.corroy.mathieu.moodtracker.R;
@@ -69,7 +68,7 @@ public class MainActivity extends FragmentActivity {
             }
         });
     }
-    
+
     // Application is running
     @Override
     protected void onResume() {
