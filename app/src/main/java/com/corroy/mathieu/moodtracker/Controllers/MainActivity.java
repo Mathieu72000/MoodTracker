@@ -62,9 +62,8 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
 
-                Intent history = new Intent(MainActivity.this, History.class);
-                MainActivity.this.startActivity(history);
-
+                Intent history = new Intent(MainActivity.this, HistoryActivity.class);
+                startActivity(history);
             }
         });
     }
