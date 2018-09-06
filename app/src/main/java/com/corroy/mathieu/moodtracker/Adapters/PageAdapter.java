@@ -1,11 +1,9 @@
 package com.corroy.mathieu.moodtracker.Adapters;
 
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import com.corroy.mathieu.moodtracker.Fragments.MoodFragment;
-
 
 public class PageAdapter extends FragmentPagerAdapter {
 
