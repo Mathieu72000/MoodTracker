@@ -32,6 +32,7 @@ public class HistoryActivity extends AppCompatActivity {
         HistoryDataBase db = new HistoryDataBase(this);
         List<MoodEntry> moodList = db.getLastMoods();
 
+        // Recover 7 Layouts for the 7 locations
         LinearLayout linearLayout1 = findViewById(R.id.linearLayout1);
         LinearLayout linearLayout2 = findViewById(R.id.linearLayout2);
         LinearLayout linearLayout3 = findViewById(R.id.linearLayout3);
@@ -39,6 +40,8 @@ public class HistoryActivity extends AppCompatActivity {
         LinearLayout linearLayout5 = findViewById(R.id.linearLayout5);
         LinearLayout linearLayout6 = findViewById(R.id.linearLayout6);
         LinearLayout linearLayout7 = findViewById(R.id.linearLayout7);
+
+        // Recover 7 TextView to show the date
         TextView historyTextView1 = findViewById(R.id.historyTextView1);
         TextView historyTextView2 = findViewById(R.id.historyTextView2);
         TextView historyTextView3 = findViewById(R.id.historyTextView3);
@@ -46,6 +49,8 @@ public class HistoryActivity extends AppCompatActivity {
         TextView historyTextView5 = findViewById(R.id.historyTextView5);
         TextView historyTextView6 = findViewById(R.id.historyTextView6);
         TextView historyTextView7 = findViewById(R.id.historyTextView7);
+
+        // recover 7 ImageButton to display the user comment if available
         ImageButton historyImageBtn1 = findViewById(R.id.imageBtn1);
         ImageButton historyImageBtn2 = findViewById(R.id.imageBtn2);
         ImageButton historyImageBtn3 = findViewById(R.id.imageBtn3);
@@ -54,6 +59,7 @@ public class HistoryActivity extends AppCompatActivity {
         ImageButton historyImageBtn6 = findViewById(R.id.imageBtn6);
         ImageButton historyImageBtn7 = findViewById(R.id.imageBtn7);
 
+            // Call the method to configure the Layout, TextView, and ButtonImage and recover the mood on the List
             configureLayout(linearLayout1, historyTextView1, historyImageBtn1, moodList.get(0));
             configureLayout(linearLayout2, historyTextView2, historyImageBtn2, moodList.get(1));
             configureLayout(linearLayout3, historyTextView3, historyImageBtn3, moodList.get(2));
@@ -63,8 +69,10 @@ public class HistoryActivity extends AppCompatActivity {
             configureLayout(linearLayout7, historyTextView7, historyImageBtn7, moodList.get(6));
         }
 
+        // Method who configure Layouts, TextViews, ImageButtons and the object MoodEntry as parameters
         private void configureLayout(LinearLayout ll, TextView htv, ImageButton imgBtn, final MoodEntry mood) {
 
+            // Set the visibility of the button to show it if a comment is available
             if (TextUtils.isEmpty(mood.getNote())) {
                 imgBtn.setVisibility(View.GONE);
             } else {
@@ -81,6 +89,7 @@ public class HistoryActivity extends AppCompatActivity {
             display.getSize(size);
             int width = size.x;
 
+            // Switch with different mood who configure color and width of different locations
             switch (mood.getMood()) {
                 case SAD:
                     Log.d("Message", "largeur:" + ll.getLayoutParams());
@@ -114,6 +123,7 @@ public class HistoryActivity extends AppCompatActivity {
 
             long daysDiff = mood.daysDifference(date);
 
+            // To display the day of the selected mood on the history
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 switch (toIntExact(daysDiff)){
                     case 1:

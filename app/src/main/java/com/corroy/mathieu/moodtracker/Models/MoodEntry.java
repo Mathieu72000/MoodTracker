@@ -7,9 +7,11 @@ public class MoodEntry {
     private Mood mood;
     private String note;
 
+    // Default constructor
     public MoodEntry() {
     }
 
+    // Constructor with parameters
     public MoodEntry(Date date, Mood mood, String note) {
         this.date = date;
         this.mood = mood;
@@ -40,6 +42,7 @@ public class MoodEntry {
         this.note = note;
     }
 
+    // Get the current time in milli
     public long daysDifference(Date endDate) {
         long different = endDate.getTime() - this.date.getTime();
         long secondsInMilli = 1000;

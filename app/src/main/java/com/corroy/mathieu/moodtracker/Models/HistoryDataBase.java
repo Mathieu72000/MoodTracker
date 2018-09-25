@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
+// Class required for creation and access to the database
 public class HistoryDataBase extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "MoodTracker.db";
@@ -44,6 +45,7 @@ public class HistoryDataBase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Add a new mood to the database
     public void addMood(MoodEntry mood) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -70,6 +72,7 @@ public class HistoryDataBase extends SQLiteOpenHelper {
         return mood;
     }
 
+    // Retrieves the last 7 moods of the database
     public List<MoodEntry> getLastMoods() {
         List<MoodEntry> moodList = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + TABLE_MOODS + " ORDER BY date DESC " + "LIMIT 7";

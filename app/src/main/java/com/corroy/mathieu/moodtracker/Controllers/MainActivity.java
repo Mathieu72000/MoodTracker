@@ -50,6 +50,7 @@ public class MainActivity extends FragmentActivity {
         mood = new MoodEntry(date, Mood.DISAPPOINTED, "");
         context = this;
 
+        // Calendar and AlarmManager for the Alarm BroadCastReceiver
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 23);
@@ -67,6 +68,7 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
 
+                // AlertDialog builder for adding the user comment
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("What happened today ?");
 
@@ -78,6 +80,7 @@ public class MainActivity extends FragmentActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         m_Text = input.getText().toString();
+                        // SharedPreferences to recover the user comment
                         SharedPreferences notePref = context.getSharedPreferences("commentaire", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = notePref.edit();
                         mood.setNote(m_Text);
@@ -103,6 +106,7 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
 
+                // Start the History activity
                 Intent history = new Intent(MainActivity.this, HistoryActivity.class);
                 startActivity(history);
             }
@@ -119,9 +123,10 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Date date = new Date();
         mHistoryDataBase = new HistoryDataBase(this);
+        Date date = new Date();
         MoodEntry currMood = mHistoryDataBase.getMood(date);
+
         if(currMood != null) {
             m_Text = currMood.getNote();
         } else {
@@ -140,11 +145,13 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onPageSelected(int position){
 
+                // Sound when the user swipe on the main
                 MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.woosh);
                 mediaPlayer.start();
 
                 String humeur = "";
 
+                // SharedPref to recover the selected mood
                 SharedPreferences sharedPref = context.getSharedPreferences("humeur", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
 

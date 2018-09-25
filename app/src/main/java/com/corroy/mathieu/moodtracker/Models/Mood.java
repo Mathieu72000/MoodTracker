@@ -1,7 +1,7 @@
 package com.corroy.mathieu.moodtracker.Models;
 
 public enum Mood {
-    // set enum constants
+    // Set enum constants
     SAD,
     DISAPPOINTED,
     NORMAL,

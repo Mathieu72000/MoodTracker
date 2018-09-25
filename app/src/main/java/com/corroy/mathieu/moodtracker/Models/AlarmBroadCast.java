@@ -12,6 +12,8 @@ public class AlarmBroadCast extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent){
         HistoryDataBase db = new HistoryDataBase(context);
         Date date = new Date();
+
+        // Recover the SharedPreferences of the mood and the comment and add it on the database
         SharedPreferences notePref = context.getSharedPreferences("commentaire", Context.MODE_PRIVATE);
         SharedPreferences sharedPref = context.getSharedPreferences("humeur", Context.MODE_PRIVATE);
         db.addMood(new MoodEntry(date, Mood.valueOf(sharedPref.getString("value", "HAPPY")), notePref.getString("note", null)));
