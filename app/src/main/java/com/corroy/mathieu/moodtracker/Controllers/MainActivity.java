@@ -1,18 +1,29 @@
 package com.corroy.mathieu.moodtracker.Controllers;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 import com.corroy.mathieu.moodtracker.Adapters.PageAdapter;
+import com.corroy.mathieu.moodtracker.Models.AlarmBroadCast;
 import com.corroy.mathieu.moodtracker.Models.HistoryDataBase;
+import com.corroy.mathieu.moodtracker.Models.Mood;
 import com.corroy.mathieu.moodtracker.Models.MoodEntry;
 import com.corroy.mathieu.moodtracker.R;
+import com.facebook.stetho.Stetho;
+import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends FragmentActivity {
@@ -21,16 +32,33 @@ public class MainActivity extends FragmentActivity {
     private ImageButton mCommentBtn;
     private ImageButton mHistoryBtn;
     private String m_Text = "";
-    private MoodEntry mood = new MoodEntry();
-    private HistoryDataBase mHistoryDatabase = new HistoryDataBase(this);
-    private int moodState = 3 ;
-    Date date = new Date();
+    private MoodEntry mood;
+    private HistoryDataBase mHistoryDataBase;
+    private AlarmManager alarmMgr;
+    private PendingIntent alarmIntent;
+    private Context context;
 
     // Application launching
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Stetho.initializeWithDefaults(this);
+
+        mHistoryDataBase = new HistoryDataBase(this);
+        Date date = new Date();
+        mood = new MoodEntry(date, Mood.DISAPPOINTED, "");
+        context = this;
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 30);
+
+        alarmMgr = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlarmBroadCast.class);
+        alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
 
         mVerticalViewPager = findViewById(R.id.activity_main_view_pager);
         mCommentBtn = findViewById(R.id.activity_comment_btn);
@@ -50,12 +78,15 @@ public class MainActivity extends FragmentActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         m_Text = input.getText().toString();
+                        SharedPreferences notePref = context.getSharedPreferences("commentaire", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = notePref.edit();
                         mood.setNote(m_Text);
                         Toast.makeText(getApplicationContext(), R.string.comment_saved, Toast.LENGTH_LONG).show();
+                        editor.putString("note", m_Text);
+                        editor.commit();
+                        Log.i("comment", notePref.getString("note", null));
                         mVerticalViewPager.getCurrentItem();
-                        mHistoryDatabase.addMood(mood);
-                        mHistoryDatabase.updateMood(mood);
-                        mHistoryDatabase.close();
+                        mHistoryDataBase.close();
                     }
                 });
                 builder.setNegativeButton("ANNULER", new DialogInterface.OnClickListener() {
@@ -88,19 +119,62 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mHistoryDatabase = new HistoryDataBase(this);
-        MoodEntry currMood = mHistoryDatabase.getMood(date);
+        Date date = new Date();
+        mHistoryDataBase = new HistoryDataBase(this);
+        MoodEntry currMood = mHistoryDataBase.getMood(date);
         if(currMood != null) {
             m_Text = currMood.getNote();
         } else {
-            moodState = 3;
             m_Text = "";
         }
-        mHistoryDatabase.close();
+        mHistoryDataBase.close();
         // Set the PagerAdapter to show fragments
         mVerticalViewPager.setAdapter(new PageAdapter(getSupportFragmentManager()));
-        mVerticalViewPager.setCurrentItem(moodState);
+        mVerticalViewPager.setCurrentItem(3);
         System.out.println("MainActivity - onResume");
+        mVerticalViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position){
+
+                MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.woosh);
+                mediaPlayer.start();
+
+                String humeur = "";
+
+                SharedPreferences sharedPref = context.getSharedPreferences("humeur", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+
+                switch (position){
+                    case 0:
+                       humeur = "SAD";
+                       break;
+                    case 1:
+                        humeur = "DISAPPOINTED";
+                        break;
+                    case 2:
+                        humeur = "NORMAL";
+                        break;
+                    case 3:
+                        humeur = "HAPPY";
+                        break;
+                    case 4:
+                        humeur = "SUPER_HAPPY";
+                        break;
+                }
+                editor.putString("value", humeur);
+                editor.commit();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
