@@ -1,9 +1,5 @@
 package com.corroy.mathieu.moodtracker.Controllers;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,16 +13,9 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.corroy.mathieu.moodtracker.Models.AlarmBroadCast;
 import com.corroy.mathieu.moodtracker.Models.HistoryDataBase;
-import com.corroy.mathieu.moodtracker.Models.Mood;
 import com.corroy.mathieu.moodtracker.Models.MoodEntry;
 import com.corroy.mathieu.moodtracker.R;
-import com.facebook.stetho.Stetho;
-
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import static java.lang.Math.toIntExact;
@@ -72,7 +61,6 @@ public class HistoryActivity extends AppCompatActivity {
             configureLayout(linearLayout5, historyTextView5, historyImageBtn5, moodList.get(4));
             configureLayout(linearLayout6, historyTextView6, historyImageBtn6, moodList.get(5));
             configureLayout(linearLayout7, historyTextView7, historyImageBtn7, moodList.get(6));
-
         }
 
         private void configureLayout(LinearLayout ll, TextView htv, ImageButton imgBtn, final MoodEntry mood) {

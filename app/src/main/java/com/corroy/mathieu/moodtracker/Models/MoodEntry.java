@@ -2,7 +2,6 @@ package com.corroy.mathieu.moodtracker.Models;
 
 import java.util.Date;
 
-
 public class MoodEntry {
     private Date date;
     private Mood mood;

@@ -1,17 +1,11 @@
 package com.corroy.mathieu.moodtracker.Controllers;
 
 import android.content.Context;
-import android.media.MediaPlayer;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.corroy.mathieu.moodtracker.R;
-
-/**
- * Created by User on 01/07/2018.
- */
 public class VerticalViewPager extends ViewPager {
     public VerticalViewPager(Context context) {
         super(context);

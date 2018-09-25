@@ -1,0 +1,128 @@
+[33mcommit 0e9b86fa9217837def04073a0a2d8718004b799d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Sep 6 17:05:46 2018 +0200
+
+    Add a new object named "MoodEntry"
+    Add a Database for the historic
+    add a new Enumeration
+    New design for the historic activity
+
+[33mcommit 5b6ff967ec565c8f099db7439241eb7c79ce0a51[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Fri Jul 13 13:55:15 2018 +0200
+
+    Add new functionality
+
+[33mcommit 25d6a750e947557ca1a0344f8770a5d37587042e[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Jul 5 15:19:37 2018 +0200
+
+    Designed the history layout
+
+[33mcommit cd4df416be141023e5aac853e6d273373a28bc8f[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Jul 5 14:57:02 2018 +0200
+
+    Correct a mistake on the ViewPager
+
+[33mcommit c0a0eb2a9512cfc54537a750faf9d2be0a189342[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Jul 5 14:51:05 2018 +0200
+
+    add a new activity named History
+    set the historyBtn to launch the new activity (History)
+
+[33mcommit 5fa4091d7eb334463ce1ddbb6f48d43b04374a14[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Jul 5 14:47:16 2018 +0200
+
+    Set the verticalViewPager with the pageAdapter
+    add an alertDialog within the comment button
+
+[33mcommit 50906f7f4805d9206fef80285a9cce947aa49c65[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Jul 5 14:44:08 2018 +0200
+
+    Redesigned the main layout and the fragment layout
+
+[33mcommit 96c62ae1a777ba35ccdbf8415bbaaaf74a8237dd[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Jul 5 14:40:44 2018 +0200
+
+    Add a VerticalViewPager for swiping
+
+[33mcommit 9ba7ed5fde2856f2bb4fa0f9d27e11e34dffe8ae[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Jul 5 14:36:30 2018 +0200
+
+    Add a PageAdapter who return 5 views with moods within a switch
+
+[33mcommit 78c041534ddc397b35a6ce00402e2269adba71e7[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Jul 5 14:34:15 2018 +0200
+
+    Add the onCreate method with Arguments
+    Set the user Interface with the onCreateView method
+
+[33mcommit edb8176aad9af0e4f0529504f2921467f4f2f563[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Jul 5 14:32:17 2018 +0200
+
+    Add new instance of MoodFragment and a Bundle
+
+[33mcommit 33852a441a0c11623e26badf077d1e359090a03b[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Jul 5 14:17:33 2018 +0200
+
+    Revert "Add new things"
+    
+    This reverts commit 003cb2a5c3b47b181d72c5948ee36e2daea73723.
+
+[33mcommit 95b047faa0b33658f4cb28638892a012838a00d3[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Jul 5 14:17:19 2018 +0200
+
+    Revert "commit all files"
+    
+    This reverts commit 4f5222690866e357574ea23be7fe102e78c9ef2a.
+
+[33mcommit 4f5222690866e357574ea23be7fe102e78c9ef2a[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Thu Jul 5 13:57:44 2018 +0200
+
+    commit all files
+
+[33mcommit 003cb2a5c3b47b181d72c5948ee36e2daea73723[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Wed Jul 4 13:37:14 2018 +0200
+
+    Add new things
+
+[33mcommit d74d6b4b7b0e7eb1ee3337a8a0c3578f9bd7e121[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Sun Jul 1 10:32:08 2018 +0200
+
+    Added a PageAdapter.java
+    Redesign of the main layout for a Vertical ViewPager
+    Added 2 buttons on the main layout
+
+[33mcommit 37a8a475727150572ad1c3a2340d3932c898322a[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Tue Jun 26 10:07:43 2018 +0200
+
+    Added MVC design pattern
+    Added 5 new drawable folders
+    Added some PNG files on drawable folders
+    Added new colors in colors.xml
+
+[33mcommit 446914e350624019877bcecd8d886ba4b03c956c[m
+Author: Mathieu72000 <Math.corroy@gmail.com>
+Date:   Tue Jun 26 09:55:19 2018 +0200
+
+    New MoodTracker project
+
+[33mcommit 071e85b464c8d408c6bc3ac4a9c4b3174a37cdfd[m
+Author: Mathieu72000 <39676348+Mathieu72000@users.noreply.github.com>
+Date:   Tue Jun 26 09:49:55 2018 +0200
+
+    Initial commit

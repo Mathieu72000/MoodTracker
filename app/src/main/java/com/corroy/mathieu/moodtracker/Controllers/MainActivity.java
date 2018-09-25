@@ -135,7 +135,6 @@ public class MainActivity extends FragmentActivity {
         mVerticalViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
