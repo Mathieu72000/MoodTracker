@@ -6,5 +6,5 @@ public enum Mood {
     DISAPPOINTED,
     NORMAL,
     HAPPY,
-    SUPER_HAPPY
+    SUPER_HAPPY,
 }

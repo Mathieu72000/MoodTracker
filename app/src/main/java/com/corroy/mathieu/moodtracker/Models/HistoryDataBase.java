@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.ParseException;
@@ -32,8 +34,8 @@ public class HistoryDataBase extends SQLiteOpenHelper {
         String CREATE_MOOD_TABLE = "CREATE TABLE "
                 + TABLE_MOODS + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUMN_DATE + " TEXT,"
                 + COLUMN_MOOD + " TEXT,"
+                + COLUMN_DATE + " TEXT,"
                 + COLUMN_NOTE + " TEXT" + ")";
         db.execSQL(CREATE_MOOD_TABLE);
     }
@@ -47,8 +49,8 @@ public class HistoryDataBase extends SQLiteOpenHelper {
     public void addMood(MoodEntry mood) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_DATE, dateFormat.format(mood.getDate()));
         values.put(COLUMN_MOOD, mood.getMood().name());
+        values.put(COLUMN_DATE, dateFormat.format(mood.getDate()));
         values.put(COLUMN_NOTE, mood.getNote());
         db.insert(TABLE_MOODS, null, values);
         db.close();
@@ -56,13 +58,13 @@ public class HistoryDataBase extends SQLiteOpenHelper {
 
     public MoodEntry getMood(Date date) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_MOODS, new String[]{COLUMN_ID, COLUMN_DATE, COLUMN_MOOD, COLUMN_NOTE}, COLUMN_DATE + "=?",
+        Cursor cursor = db.query(TABLE_MOODS, new String[]{COLUMN_ID, COLUMN_MOOD, COLUMN_DATE, COLUMN_NOTE}, COLUMN_DATE + "=?",
                 new String[]{dateFormat.format(date)}, null, null, null, null);
         MoodEntry mood = null;
         if (cursor.moveToFirst()) {
             try {
-                mood = new MoodEntry(dateFormat.parse(cursor.getString(0)),
-                        cursor.getString(1), cursor.getString(2));
+                mood = new MoodEntry(dateFormat.parse(cursor.getString(2)),
+                        Mood.valueOf(cursor.getString(1)), cursor.getString(3));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -72,33 +74,23 @@ public class HistoryDataBase extends SQLiteOpenHelper {
 
     public List<MoodEntry> getLastMoods() {
         List<MoodEntry> moodList = new ArrayList<>();
-        String selectQuery = "SELECT * FROM " + TABLE_MOODS + " ORDER BY date DESC " + "LIMIT 8";
+        String selectQuery = "SELECT * FROM " + TABLE_MOODS + " ORDER BY date DESC " + "LIMIT 7";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
                 MoodEntry mood = new MoodEntry();
                 try {
-                    mood.setDate(dateFormat.parse(cursor.getString(0)));
+                    mood.setDate(dateFormat.parse(cursor.getString(2)));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                mood.setMood(cursor.getString(1));
-                mood.setNote(cursor.getString(2));
+                mood.setMood(Mood.valueOf(Mood.class, cursor.getString(1)));
+                mood.setNote(cursor.getString(3));
                 moodList.add(mood);
             } while (cursor.moveToNext());
         }
         return moodList;
-    }
-
-    public void updateMood(MoodEntry mood) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_DATE, dateFormat.format(mood.getDate()));
-        values.put(COLUMN_MOOD, mood.getMood().name());
-        values.put(COLUMN_NOTE, mood.getNote());
-        db.update(TABLE_MOODS, values, COLUMN_DATE + " = ?",
-                new String[]{dateFormat.format(mood.getDate())});
     }
 }
 
