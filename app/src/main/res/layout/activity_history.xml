@@ -1,57 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_height="match_parent"
+<LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <include
-        layout="@layout/history_layout"
+    <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-    <include
-        layout="@layout/history_layout"
+        <TextView
+            android:id="@+id/historyTextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:textSize="12.2sp"
+            android:textStyle="bold"
+            android:textColor="#A000" />
+
+        <ImageButton
+            android:id="@+id/imageBtn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_gravity="center|end"
+            android:background="@drawable/ic_comment_black_48px" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-    <include
-        layout="@layout/history_layout"
+        <TextView
+            android:id="@+id/historyTextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:textSize="12.2sp"
+            android:textStyle="bold"
+            android:textColor="#A000" />
+
+        <ImageButton
+            android:id="@+id/imageBtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_gravity="center|end"
+            android:background="@drawable/ic_comment_black_48px" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-    <include
-        layout="@layout/history_layout"
+        <TextView
+            android:id="@+id/historyTextView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:textSize="12.2sp"
+            android:textStyle="bold"
+            android:textColor="#A000" />
+
+        <ImageButton
+            android:id="@+id/imageBtn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_gravity="center|end"
+            android:background="@drawable/ic_comment_black_48px" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:background="@color/warm_grey"
+        android:orientation="horizontal">
 
-    <include
-        layout="@layout/history_layout"
+        <TextView
+            android:id="@+id/historyTextView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:textSize="12.2sp"
+            android:textStyle="bold"
+            android:textColor="#A000" />
+
+        <ImageButton
+            android:id="@+id/imageBtn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_gravity="center|end"
+            android:background="@drawable/ic_comment_black_48px" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-    <include
-        layout="@layout/history_layout"
+        <TextView
+            android:id="@+id/historyTextView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:textSize="12.2sp"
+            android:textStyle="bold"
+            android:textColor="#A000" />
+
+        <ImageButton
+            android:id="@+id/imageBtn5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_gravity="center|end"
+            android:background="@drawable/ic_comment_black_48px" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout6"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-    <include
-        layout="@layout/history_layout"
+        <TextView
+            android:id="@+id/historyTextView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:textSize="12.2sp"
+            android:textStyle="bold"
+            android:textColor="#A000" />
+
+        <ImageButton
+            android:id="@+id/imageBtn6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_gravity="center|end"
+            android:background="@drawable/ic_comment_black_48px" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout7"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/historyTextView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:textSize="12.2sp"
+            android:textStyle="bold"
+            android:textColor="#A000" />
+
+        <ImageButton
+            android:id="@+id/imageBtn7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_gravity="center|end"
+            android:background="@drawable/ic_comment_black_48px" />
+
+    </LinearLayout>
 
 </LinearLayout>
