@@ -8,8 +8,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <receiver android:name=".Models.AlarmBroadCast" android:exported="true"></receiver>
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="true">
+        <receiver android:name=".Models.AlarmBroadCast">
+        </receiver>
         <activity
             android:name=".Controllers.MainActivity"
             android:screenOrientation="locked">

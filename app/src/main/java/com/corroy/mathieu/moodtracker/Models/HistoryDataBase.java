@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -54,22 +53,6 @@ public class HistoryDataBase extends SQLiteOpenHelper {
         values.put(COLUMN_NOTE, mood.getNote());
         db.insert(TABLE_MOODS, null, values);
         db.close();
-    }
-
-    public MoodEntry getMood(Date date) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_MOODS, new String[]{COLUMN_ID, COLUMN_MOOD, COLUMN_DATE, COLUMN_NOTE}, COLUMN_DATE + "=?",
-                new String[]{dateFormat.format(date)}, null, null, null, null);
-        MoodEntry mood = null;
-        if (cursor.moveToFirst()) {
-            try {
-                mood = new MoodEntry(dateFormat.parse(cursor.getString(2)),
-                        Mood.valueOf(cursor.getString(1)), cursor.getString(3));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-        return mood;
     }
 
     // Retrieves the last 7 moods of the database

@@ -11,7 +11,6 @@ import android.media.MediaPlayer;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -47,7 +46,7 @@ public class MainActivity extends FragmentActivity {
 
         mHistoryDataBase = new HistoryDataBase(this);
         Date date = new Date();
-        mood = new MoodEntry(date, Mood.DISAPPOINTED, "");
+        mood = new MoodEntry(date, Mood.HAPPY, "");
         context = this;
 
         // Calendar and AlarmManager for the Alarm BroadCastReceiver
@@ -80,14 +79,13 @@ public class MainActivity extends FragmentActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         m_Text = input.getText().toString();
-                        // SharedPreferences to recover the user comment
+                        // Insert the user comment into the SharedPreferences
                         SharedPreferences notePref = context.getSharedPreferences("commentaire", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = notePref.edit();
                         mood.setNote(m_Text);
                         Toast.makeText(getApplicationContext(), R.string.comment_saved, Toast.LENGTH_LONG).show();
                         editor.putString("note", m_Text);
                         editor.commit();
-                        Log.i("comment", notePref.getString("note", null));
                         mVerticalViewPager.getCurrentItem();
                         mHistoryDataBase.close();
                     }
@@ -124,15 +122,6 @@ public class MainActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         mHistoryDataBase = new HistoryDataBase(this);
-        Date date = new Date();
-        MoodEntry currMood = mHistoryDataBase.getMood(date);
-
-        if(currMood != null) {
-            m_Text = currMood.getNote();
-        } else {
-            m_Text = "";
-        }
-        mHistoryDataBase.close();
         // Set the PagerAdapter to show fragments
         mVerticalViewPager.setAdapter(new PageAdapter(getSupportFragmentManager()));
         mVerticalViewPager.setCurrentItem(3);
@@ -151,7 +140,7 @@ public class MainActivity extends FragmentActivity {
 
                 String humeur = "";
 
-                // SharedPref to recover the selected mood
+                // Insert a mood into the SharedPreferences
                 SharedPreferences sharedPref = context.getSharedPreferences("humeur", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
 
