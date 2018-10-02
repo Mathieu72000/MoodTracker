@@ -100,6 +100,7 @@ public class HistoryActivity extends AppCompatActivity {
             });
         }
 
+        // Recover the screen size of the phone
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);

@@ -52,11 +52,14 @@ public class MainActivity extends FragmentActivity {
         // Calendar and AlarmManager for the Alarm BroadCastReceiver
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
+        // Sets the time for the alarm to sound
         calendar.set(Calendar.HOUR_OF_DAY, 23);
         calendar.set(Calendar.MINUTE, 30);
 
+        // AlarmManager give a way to time-based operations
         alarmMgr = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmBroadCast.class);
+        // PendingIntent give a permission from the application to use an Intent
         alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
 
@@ -74,7 +77,7 @@ public class MainActivity extends FragmentActivity {
                 final EditText input = new EditText(MainActivity.this);
                 input.setText(mood.getNote());
                 builder.setView(input);
-
+                // Set a positiveButton to confirm the comment
                 builder.setPositiveButton("VALIDER", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -90,6 +93,7 @@ public class MainActivity extends FragmentActivity {
                         mHistoryDataBase.close();
                     }
                 });
+                // Set a negativeButton to cancel the comment
                 builder.setNegativeButton("ANNULER", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -140,7 +144,7 @@ public class MainActivity extends FragmentActivity {
 
                 String humeur = "";
 
-                // Insert a mood into the SharedPreferences
+                // Recover and insert the selected mood by the user into the SharedPreferences
                 SharedPreferences sharedPref = context.getSharedPreferences("humeur", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
 
