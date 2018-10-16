@@ -36,6 +36,7 @@ public class MainActivity extends FragmentActivity {
     private AlarmManager alarmMgr;
     private PendingIntent alarmIntent;
     private Context context;
+    private MediaPlayer mp;
 
     // Application launching
     @Override
@@ -128,7 +129,6 @@ public class MainActivity extends FragmentActivity {
         mHistoryDataBase = new HistoryDataBase(this);
         // Set the PagerAdapter to show fragments
         mVerticalViewPager.setAdapter(new PageAdapter(getSupportFragmentManager()));
-        mVerticalViewPager.setCurrentItem(3);
         System.out.println("MainActivity - onResume");
         mVerticalViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -136,11 +136,7 @@ public class MainActivity extends FragmentActivity {
             }
 
             @Override
-            public void onPageSelected(int position){
-
-                // Sound when the user swipe on the main
-                MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.woosh);
-                mediaPlayer.start();
+            public void onPageSelected(int position) {
 
                 String humeur = "";
 
@@ -148,10 +144,10 @@ public class MainActivity extends FragmentActivity {
                 SharedPreferences sharedPref = context.getSharedPreferences("humeur", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
 
-                switch (position){
+                switch (position) {
                     case 0:
-                       humeur = "SAD";
-                       break;
+                        humeur = "SAD";
+                        break;
                     case 1:
                         humeur = "DISAPPOINTED";
                         break;
@@ -166,7 +162,12 @@ public class MainActivity extends FragmentActivity {
                         break;
                 }
                 editor.putString("value", humeur);
+                editor.putInt("index", position);
                 editor.commit();
+
+                // Sound when the user swipe on the main
+                mp = MediaPlayer.create(getApplicationContext(), R.raw.woosh);
+                mp.start();
             }
 
             @Override
@@ -174,13 +175,18 @@ public class MainActivity extends FragmentActivity {
 
             }
         });
-    }
 
+        SharedPreferences sharedPref = context.getSharedPreferences("humeur", Context.MODE_PRIVATE);
+        int index = sharedPref.getInt("index", 3);
+        mVerticalViewPager.setCurrentItem(index);
+    }
+    
     @Override
     protected void onPause() {
         super.onPause();
         System.out.println("MainActivity - onPause");
     }
+
 
     @Override
     protected void onStop() {
